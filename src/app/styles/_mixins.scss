@@ -1,6 +1,10 @@
 @use 'fonts' as *;
-@mixin flex(){
-
+@mixin flex($direction:row,$justify:start,$align:start,$gap:0){
+display: flex;
+flex-direction: $direction;
+justify-content: $justify;
+align-items: $align;
+gap:$gap
 }
 
 @mixin TextPreset1{

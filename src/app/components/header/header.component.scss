@@ -1,0 +1,25 @@
+@use 'mixins' as *;
+@use 'variables' as *;
+
+:host{
+   
+    
+}
+
+header{
+     height: 5rem;
+    padding: 24px 80px;
+    @include flex($direction:row,$justify:space-between,$align:baseline);
+    width:100%;
+    box-shadow: 0px 2px 4px 0px $shardow-color;
+    .end{
+        @include flex(row,$gap:0.5rem);
+    }
+}
+h2{
+    @include TextPreset1;
+   
+}
+h5{
+    @include TextPreset2;
+}
