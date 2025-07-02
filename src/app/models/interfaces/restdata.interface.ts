@@ -18,3 +18,9 @@ export interface ICountryData {
     alt?: string;
   };
 }
+
+export interface ICountriesData{
+isLoading: boolean,
+data: ICountryData[],
+error: string | null
+}
