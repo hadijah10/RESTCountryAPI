@@ -5,5 +5,5 @@ export const selectFeature = (state: IAppStateInterface) => state.isDark
 
 export const isDarkSelector = createSelector(
     selectFeature,
-    (state) => state.isDark
+    (state) => state
 )

@@ -1,12 +1,21 @@
 import { on,createReducer } from "@ngrx/store";
 import { IThemeInterface } from "../../models/interfaces/theme.interface";
-import { toggleTheme } from "../actions/themeswitcher.action";
+import { setTheme, toggleTheme } from "../actions/themeswitcher.action";
 
 export const initialState:IThemeInterface = {
-    isDark: false
+    isDark: JSON.parse(localStorage.getItem('isDark') || 'false')
 }
 
 export const themeReducer = createReducer(
 initialState,
-on(toggleTheme,(state) =>( {...state,isDark:!state.isDark}))
+on(toggleTheme,(state) =>{
+    const newTheme = !state.isDark;
+    localStorage.setItem('isDark', JSON.stringify(newTheme))
+   return  {...state,isDark:newTheme};
+}
+),
+on(setTheme, (state, action) => {
+    localStorage.setItem('isDark', JSON.stringify(action.isDark));
+    return { ...state, isDark: action.isDark };
+}),
 )
