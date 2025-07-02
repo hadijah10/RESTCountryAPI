@@ -11,7 +11,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getCountries(){
-    return this.http.get<ICountryData>(environment.apiUrl)
+    return this.http.get<ICountryData[]>(environment.apiUrl)
   }
 
 
