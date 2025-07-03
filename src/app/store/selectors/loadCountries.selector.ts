@@ -3,7 +3,7 @@ import { IAppStateInterface } from "../../models/interfaces/appstate.interface";
 
 export const countryFeature = (state:IAppStateInterface) => state.countries
 
-export const loadCuntriesSelector = createSelector(
+export const loadCountriesSelector = createSelector(
     countryFeature,
     (state) => state
 )

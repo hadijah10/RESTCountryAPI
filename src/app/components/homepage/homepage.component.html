@@ -1,1 +1,30 @@
-<p>homepage works!</p>
+<div *ngIf="data$ | async as countrydata">
+    @if(countrydata.error !== null){
+        <p>Error occurred</p>
+    }
+    @else {
+        @if(countrydata.isLoading == false){
+            <section class="cardflag">
+            @for(data of countrydata.data;track $index){
+           <a [routerLink]="['/',data.name]" class="countrycard">
+             <div class="imgcontainer">
+                <img [src]="data.flags.svg" [alt]="data.flags.alt">
+             </div>
+            <section class="description">
+            <p class="countryname"> {{data.name.official}}</p>
+            <div class="sub-desc">
+                <p><span class="title">Population: </span>{{data.population}}</p>
+                <p><span class="title">Region: </span>{{data.region}}</p>
+                <p><span class="title">Capital: </span>{{data.capital}}</p>
+            </div>
+            </section>
+           </a>
+        }
+            </section>
+        }
+    @else {
+        <p>Loading...</p>
+    }
+      
+       }
+</div>
