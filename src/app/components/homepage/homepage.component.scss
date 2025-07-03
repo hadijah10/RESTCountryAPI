@@ -8,9 +8,13 @@
   place-content: center;
   gap:2rem;
   margin-inline: auto; /* center horizontally */
- 
+ a,a:active{
+    
+
+ }
 .countryname{
     @include TextPreset4;
+    
 }
 p{
     @include TextPreset6;
@@ -18,11 +22,12 @@ p{
         @include TextPreset5;
     }
 }
-.countrycard{
+.countrycard,a:active{
     cursor: pointer;
     background-color: var(--header-color);
     box-shadow: 0px 0px 7px 2px $shardow-color;
     border-radius: 5px;
+    text-decoration: none;
     @include flex($direction:column,$gap:24px);
     .imgcontainer{
     width: 100%;
