@@ -10,4 +10,5 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 export class CountrydetailsComponent {
 activatedRoute = inject(ActivatedRoute)
   constructor(){}
+  
 }

@@ -11,7 +11,7 @@ export const initialState: ISelectedCountry={
 
 export const SelectedCountryReducer = createReducer(
     initialState,
-    on(selectedCountry,(state) => ({...state,isLoading:false})),
+    on(selectedCountry,(state,action) => ({...state,isLoading:false,id:action.id})),
     on(getSelectedCountrySuccess,(state,action) => ({...state, isLoading: false, data: action.country})),
     on(getSelectedCountryFailed,(state,action) => ({...state,isLoading: false, error:action.error}))
 )
