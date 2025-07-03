@@ -14,6 +14,6 @@ export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
-    provideStore({isDark: themeReducer,countries: LoadCountriesReducer }),
+    provideStore({isDark: themeReducer,countries: LoadCountriesReducer, }),
     provideEffects([LoadCountriesEffect]), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode()})]
 };
