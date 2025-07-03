@@ -5,6 +5,7 @@ declare interface Env {
   // Example: NGX_VERSION: string;
 
   readonly NG_APP_KEY: string
+
   [key: string]: any;
 }
 
