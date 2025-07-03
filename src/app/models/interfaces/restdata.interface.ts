@@ -26,6 +26,7 @@ error: string | null
 }
 
 export interface ISelectedCountry{
+  id:string,
   isLoading: boolean,
   data: ISelectCountryByNameInterface[],
   error: string | null

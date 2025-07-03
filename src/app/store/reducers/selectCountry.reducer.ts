@@ -1,8 +1,9 @@
 import { ISelectedCountry } from "../../models/interfaces/restdata.interface"
-import { getSelectedCountryFailed,getSelectedCountrySuccessByName,selectedCountry } from "../actions/selectCountry.action"
+import { getSelectedCountryFailed,getSelectedCountrySuccess,selectedCountry } from "../actions/selectCountry.action"
 import { on,createReducer } from "@ngrx/store"
 
 export const initialState: ISelectedCountry={
+    id:'',
     isLoading:false,
     data:[],
     error: null
@@ -11,6 +12,6 @@ export const initialState: ISelectedCountry={
 export const SelectedCountryReducer = createReducer(
     initialState,
     on(selectedCountry,(state) => ({...state,isLoading:false})),
-    on(getSelectedCountrySuccessByName,(state,action) => ({...state, isLoading: false, data: action.country})),
+    on(getSelectedCountrySuccess,(state,action) => ({...state, isLoading: false, data: action.country})),
     on(getSelectedCountryFailed,(state,action) => ({...state,isLoading: false, error:action.error}))
 )
