@@ -24,3 +24,7 @@ isLoading: boolean,
 data: ICountryData[],
 error: string | null
 }
+
+export interface ISelectedCountry{
+  selectedCountry: string
+}
