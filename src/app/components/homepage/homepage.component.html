@@ -6,7 +6,7 @@
         @if(countrydata.isLoading == false){
             <section class="cardflag">
             @for(data of countrydata.data;track $index){
-           <a [routerLink]="['/',data.name]" class="countrycard">
+           <a [routerLink]="['/',data.name.official.toLowerCase()]" class="countrycard">
              <div class="imgcontainer">
                 <img [src]="data.flags.svg" [alt]="data.flags.alt">
              </div>
