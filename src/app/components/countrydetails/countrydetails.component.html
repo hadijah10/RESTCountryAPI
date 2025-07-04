@@ -1,61 +1,55 @@
-<section>
-    <a routerLink="/">
-        <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M6.46447 0.107445L7.64298 1.28596L3.75389 5.17504L18.6031 5.17504L18.6031 6.82496L3.75389 6.82496L7.64298 10.714L6.46447 11.8926L0.57191 6L6.46447 0.107445Z" fill="#111517"/>
-        </svg>
-        <p>Go Back</p>
+<section class="container">
+  <nav>
+    <a routerLink="/" aria-label="Go back to country list">
+      <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M6.46447 0.107445L7.64298 1.28596L3.75389 5.17504L18.6031 5.17504L18.6031 6.82496L3.75389 6.82496L7.64298 10.714L6.46447 11.8926L0.57191 6L6.46447 0.107445Z"
+          fill="#111517" />
+      </svg>
+      <span>Go Back</span>
     </a>
-    <!-- @if(selectedCountryData)
-    @for(data of selectedCountryData;track $index ){} -->
-    <section *ngIf="countrydata$ | async as selecteddata">
-        <section>
-            <div> 
-                <img [src]="selecteddata.data[0].flags.svg" alt="Country's imgag">
-            </div>
-        <section>
-            <div>
-                <h5><span>Native Name: </span>
-                    {{selecteddata.data[0].name.common}}</h5>
-                <h5><span>Population: </span>
-                        {{selecteddata.data[0].population}}
-                </h5>
-                <h5><span>Region: </span>
-                    {{selecteddata.data[0].region}}
-                </h5>
-                <h5><span>Sub Region: </span>
-                    {{selecteddata.data[0].subregion}}
-                </h5>
-                <h5><span>Capital: </span>
-                    {{selecteddata.data[0].capital}}
-                </h5>
-            </div>
-            <div>
-                <h5><span>Top-Level Domain: </span>
-                    {{selecteddata.data[0].tld[0]}}
-                </h5>
-                <h5><span>Currencies: </span>
-                    {{selecteddata.data[0].currencies | objectlist : 'currency'}}
-                </h5>
-                <h5><span>Languages: </span>
-                   <p>{{selecteddata.data[0].languages | objectlist : 'lang'}}</p>
-                </h5>
-            </div>
-        </section>
-        <section>
-            <h3>Border: </h3>
-            <div>
-               @if(selecteddata.data[0].borders.length){
-                 @for(data of selecteddata.data[0].borders; track $index){
-                    <button>{{data}}</button>
-                }
-               }
+  </nav>
 
-            </div>
-        </section>
-        </section>     
-    </section>
+  <section *ngIf="countrydata$ | async as selecteddata">
+    <article  class="info">
+      <figure class="img">
+        <img [src]="selecteddata.data[0].flags.svg" [alt]="selecteddata.data[0].name.common + ' flag'" />
+      </figure>
+      <section class="sideinfo">
+          <section aria-labelledby="country-details-heading">
+        <header>
+          <h2 id="country-details-heading">{{ selecteddata.data[0].name.common }}</h2>
+        </header>
 
-    <div>
-        
-    </div>
+        <div class="country-details">
+          <div class="ldetails">
+            <span>Native Name: </span> {{ selecteddata.data[0].name.common }}<br>
+            <span>Population: </span> {{ selecteddata.data[0].population }}<br>
+            <span>Region: </span> {{ selecteddata.data[0].region }}<br>
+            <span>Sub Region: </span> {{ selecteddata.data[0].subregion }}<br>
+            <span>Capital: </span> {{ selecteddata.data[0].capital }}<br>
+          </div>
+
+          <div class="rdetails">
+            <span>Top-Level Domain:</span> {{ selecteddata.data[0].tld[0] }}<br>
+            <span>Currencies:</span> {{ selecteddata.data[0].currencies | objectlist : 'currency' }}<br>
+            <span>Languages:</span> {{ selecteddata.data[0].languages | objectlist : 'lang' }}<br>
+          </div>
+        </div>
+      </section>
+      </section>
+      <section aria-labelledby="border-countries-heading">
+        <h3 id="border-countries-heading">Border Countries:</h3>
+        <div class="border-buttons">
+          @if (selecteddata.data[0].borders.length) {
+            @for (border of selecteddata.data[0].borders; track $index) {
+              <button type="button">{{ border }}</button>
+            }
+          } @else {
+            <p>No border countries</p>
+          }
+        </div>
+      </section>
+    </article>
+  </section>
 </section>
