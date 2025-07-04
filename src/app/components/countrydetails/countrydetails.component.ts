@@ -6,10 +6,11 @@ import { Observable } from 'rxjs';
 import { ISelectedCountry } from '../../models/interfaces/restdata.interface';
 import { countrydata, idSelector } from '../../store/selectors/selectCountry.selector';
 import { CommonModule } from '@angular/common';
+import { ObjectPipe } from '../../pipes/object.pipe';
 
 @Component({
   selector: 'app-countrydetails',
-  imports: [RouterLink,CommonModule],
+  imports: [RouterLink,CommonModule,ObjectPipe],
   templateUrl: './countrydetails.component.html',
   styleUrl: './countrydetails.component.scss'
 })
