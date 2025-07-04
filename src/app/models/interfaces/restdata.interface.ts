@@ -10,6 +10,7 @@ export interface ICountryData {
     };
   };
   population: number;
+  cca3:string,
   region: string;
   capital?: string[];          // capital can be missing or an empty array
   flags: {
@@ -28,17 +29,17 @@ error: string | null
 export interface ISelectedCountry{
   id:string,
   isLoading: boolean,
-  data: ISelectCountryByNameInterface[],
+  data: ISelectCountryInterface[],
   error: string | null
 }
 
 
-export interface ISelectCountryByNameInterface{
+export interface ISelectCountryInterface{ 
   name: {
     common: string;
     official: string;
     nativeName: {
-      [languageCode: string]: {
+      [key: string]: {
         official: string;
         common: string;
       };
@@ -52,7 +53,7 @@ export interface ISelectCountryByNameInterface{
   status: string;
   unMember: boolean;
   currencies: {
-    [currencyCode: string]: {
+    [code: string]: {
       symbol: string;
       name: string;
     };
@@ -66,21 +67,25 @@ export interface ISelectCountryByNameInterface{
   region: string;
   subregion: string;
   languages: {
-    [languageCode: string]: string;
+    [code: string]: string;
   };
   latlng: [number, number];
   landlocked: boolean;
   borders: string[];
   area: number;
   demonyms: {
-    [languageCode: string]: {
+    eng: {
+      f: string;
+      m: string;
+    };
+    fra: {
       f: string;
       m: string;
     };
   };
   cca3: string;
   translations: {
-    [languageCode: string]: {
+    [lang: string]: {
       official: string;
       common: string;
     };
@@ -97,14 +102,14 @@ export interface ISelectCountryByNameInterface{
   fifa: string;
   car: {
     signs: string[];
-    side: 'left' | 'right';
+    side: string;
   };
   timezones: string[];
   continents: string[];
   flags: {
     png: string;
     svg: string;
-    alt?: string;
+    alt: string;
   };
   coatOfArms: {
     png: string;
@@ -118,6 +123,7 @@ export interface ISelectCountryByNameInterface{
     format: string;
     regex: string;
   };
+
 
 }
 

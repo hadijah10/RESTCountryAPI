@@ -25,20 +25,18 @@ selectedCountryData: ISelectedCountry
 }
 id:string=''
   constructor(){
+
     this.id= this.activatedRoute.snapshot.params['id'];
+    this.storeservice.dispatch(selectedCountry({id:this.id}))
     this.countrydata$ = this.storeservice.select(countrydata)
-    // this.countrydata$.subscribe({
-    //   next: (data) => this.selectedCountryData = data,
-    //   error:(error) => {}
-    // })
-    console.log(this.selectedCountryData)
+    this.countrydata$.subscribe(dat => console.log(
+      'the acy data',dat))
  
   }
 
-  
-
   ngOnInit(){
-    this.storeservice.dispatch(selectedCountry({id:this.id}))
+    
+  
   }
 
 }

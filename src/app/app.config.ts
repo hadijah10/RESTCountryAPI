@@ -10,11 +10,12 @@ import { provideHttpClient } from '@angular/common/http';
 import { LoadCountriesReducer } from './store/reducers/loadCountries.reducer';
 import { LoadCountriesEffect } from './store/effects/loadCountries.effect';
 import { SelectedCountryReducer } from './store/reducers/selectCountry.reducer';
+import { SelectCountryEffect } from './store/effects/selectCountry.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
     provideStore({isDark: themeReducer,countries: LoadCountriesReducer,country: SelectedCountryReducer}),
-    provideEffects([LoadCountriesEffect]), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode()})]
+    provideEffects([LoadCountriesEffect,SelectCountryEffect]), provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode()})]
 };
