@@ -5,10 +5,11 @@ import { selectedCountry } from '../../store/actions/selectCountry.action';
 import { Observable } from 'rxjs';
 import { ISelectedCountry } from '../../models/interfaces/restdata.interface';
 import { countrydata, idSelector } from '../../store/selectors/selectCountry.selector';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-countrydetails',
-  imports: [RouterLink],
+  imports: [RouterLink,CommonModule],
   templateUrl: './countrydetails.component.html',
   styleUrl: './countrydetails.component.scss'
 })
@@ -16,27 +17,21 @@ export class CountrydetailsComponent implements OnInit{
 activatedRoute = inject(ActivatedRoute)
 countrydata$: Observable<ISelectedCountry>
 storeservice = inject(Store)
-selectedCountryData: ISelectedCountry 
-= {
-  id:'',
-  isLoading:false,
-  data:[],
-  error:null
-}
+selectedCountryData!: ISelectedCountry 
+
 id:string=''
   constructor(){
 
     this.id= this.activatedRoute.snapshot.params['id'];
-    this.storeservice.dispatch(selectedCountry({id:this.id}))
     this.countrydata$ = this.storeservice.select(countrydata)
-    this.countrydata$.subscribe(dat => console.log(
-      'the acy data',dat))
+    this.countrydata$.subscribe(data => 
+      this.selectedCountryData = data
+    )
  
   }
 
   ngOnInit(){
-    
-  
+      this.storeservice.dispatch(selectedCountry({id:this.id}))
   }
 
 }

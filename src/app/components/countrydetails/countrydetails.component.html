@@ -5,6 +5,58 @@
         </svg>
         <p>Go Back</p>
     </a>
+    <!-- @if(selectedCountryData)
+    @for(data of selectedCountryData;track $index ){} -->
+    <section *ngIf="countrydata$ | async as selecteddata">
+        <section>
+            <div> 
+                <img [src]="selecteddata.data[0].flags.svg" alt="Country's imgag">
+            </div>
+        <section>
+            <div>
+                <h5><span>Native Name: </span>
+                    {{selecteddata.data[0].name.common}}</h5>
+                <h5><span>Population: </span>
+                        {{selecteddata.data[0].population}}
+                </h5>
+                <h5><span>Region: </span>
+                    {{selecteddata.data[0].region}}
+                </h5>
+                <h5><span>Sub Region: </span>
+                    {{selecteddata.data[0].subregion}}
+                </h5>
+                <h5><span>Capital: </span>
+                    {{selecteddata.data[0].capital}}
+                </h5>
+            </div>
+            <div>
+                <h5><span>Top-Level Domain: </span>
+                    {{selecteddata.data[0].tld[0]}}
+                </h5>
+                <h5><span>Currencies: </span>
+                    {{selecteddata.data[0].currencies['XOF'].name}}
+                </h5>
+                <h5><span>Languages: </span>
+                   <!-- @for(lang of selecteddata.data[0].languages) {
+                    <p>{{lang}}</p>
+                   } -->
+                </h5>
+            </div>
+        </section>
+        <section>
+            <h3>Border: </h3>
+            <div>
+               @if(selecteddata.data[0].borders.length){
+                 @for(data of selecteddata.data[0].borders; track $index){
+                    <button>{{data}}</button>
+                }
+               }
+
+            </div>
+        </section>
+        </section>     
+    </section>
+
     <div>
         
     </div>
