@@ -29,7 +29,7 @@ gap:$gap
 @mixin TextPreset4{
     @include TextXB;
     font-size: 18px;
-    line-height: 26%;
+
     letter-spacing: 0px;
 }
 
@@ -37,14 +37,14 @@ gap:$gap
 @mixin TextPreset5{
     @include TextSB;
     font-size: 14px;
-    line-height: 16%;
+
     letter-spacing: 0;
 }
 
 //country detail value
 @mixin TextPreset6{
     @include TextLight;
-    font-size: 14;
-    line-height: 16%;
+    font-size: 14px;
+
     letter-spacing: 0px;
 }
