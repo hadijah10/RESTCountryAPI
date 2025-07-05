@@ -11,7 +11,13 @@
   </nav>
 
   <section *ngIf="countrydata$ | async as selecteddata" >
-    <article  class="info">
+      <section *ngIf="selecteddata.error">
+      <p>An error occurred</p>
+    </section>
+    <section *ngIf="selecteddata.isLoading">
+      <p>Loading...</p>
+    </section>
+      <article  class="info">
       <div class="img">
         <img [src]="selecteddata.data[0].flags.svg" [alt]="selecteddata.data[0].name.common + ' flag'" />
       </div>
@@ -50,5 +56,8 @@
       </section>
       </section>
     </article>
+  
+
+    </section>
   </section>
-</section>
+

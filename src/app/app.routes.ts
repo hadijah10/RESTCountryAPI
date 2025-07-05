@@ -6,11 +6,11 @@ import { CountrydetailsComponent } from './components/countrydetails/countrydeta
 export const routes: Routes = [
  {
     path:'',
-    component: HomepageComponent
+    loadComponent: () => import('./components/homepage/homepage.component').then(m => m.HomepageComponent)
  },
  {
     path:':id',
-    component: CountrydetailsComponent
+    loadComponent: () => import('./components/countrydetails/countrydetails.component').then(m => m.CountrydetailsComponent)
  },
  {
     path: '**',
