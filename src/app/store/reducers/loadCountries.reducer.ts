@@ -1,6 +1,7 @@
 import { ICountriesData, ICountryData } from "../../models/interfaces/restdata.interface"
 import { on, createReducer } from "@ngrx/store"
 import { loadCountries, loadCountriesSuccess, loadCountriesFailure, loadCountriesFilter } from "../actions/loadCountries.action"
+import { searchTerm } from "../selectors/loadCountries.selector"
 
 export const initialState: ICountriesData = {
     isLoading: false,

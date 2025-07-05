@@ -21,12 +21,12 @@ export const searchTerm = createSelector(
 export const countriesSelector = createSelector(
     countryFeature,
     (state) => 
-    {
+    {   let all = state
          let filtered = state.data;
     if (state.searchTerm!=='') {
       const query = state.searchTerm.toLowerCase();
       filtered = filtered.filter((country) =>
-        country.name.common.toLowerCase().includes(query)
+        country.name.official.toLowerCase().includes(query)
       );
     }
     if (state.region) {
@@ -34,7 +34,10 @@ export const countriesSelector = createSelector(
         (country) => country.region === state.region
       );
     }
-    return filtered;
+    return {
+      ...all,
+      data: filtered
+    }
     } 
 
 )

@@ -1,6 +1,42 @@
 @use 'mixins' as *;
 @use 'variables' as *;
 
+.search{
+  .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  max-width: 300px;
+}
+
+.search-container svg {
+  flex-shrink: 0;
+  color: #666;
+}
+
+.search-container input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1rem;
+}
+
+}
 .cardflag {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

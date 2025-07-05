@@ -1,14 +1,16 @@
-import { Component,inject } from '@angular/core';
+import { Component,inject, signal } from '@angular/core';
 import { IThemeInterface } from '../../models/interfaces/theme.interface';
 import { Store } from '@ngrx/store';
 import { loadCountries } from '../../store/actions/loadCountries.action';
-import { loadCountriesSelector } from '../../store/selectors/loadCountries.selector';
-import { ICountriesData } from '../../models/interfaces/restdata.interface';
+import { countriesSelector, loadCountriesSelector } from '../../store/selectors/loadCountries.selector';
+import { ICountryData,ICountriesData} from  '../../models/interfaces/restdata.interface';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable } from 'rxjs';
 import { IAppStateInterface } from '../../models/interfaces/appstate.interface';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import {FormsModule} from '@angular/forms';
+import { loadCountriesFilter } from '../../store/actions/loadCountries.action';
+import { countryFeature } from '../../store/selectors/loadCountries.selector';
 
 @Component({
   selector: 'app-homepage',
@@ -18,30 +20,39 @@ import {FormsModule} from '@angular/forms';
 })
 export class HomepageComponent {
   route = inject(Router)
-  data$:Observable<ICountriesData>;
-  searchTerm =new BehaviorSubject<string>('')
-  filterRegion: string=''
+  data$:Observable<ICountriesData>
+  searchTerminp =new BehaviorSubject<string>('')
+    regions: string[] = ['','Africa', 'Americas', 'Asia', 'Europe', 'Oceania'];
+  searchsig = signal<string>('')
+  region:string = ''
+  regionsig = signal<string>('')
 
   constructor(private store:Store<IAppStateInterface>){
-    this.data$ = this.store.select(loadCountriesSelector)
-    this.searchTerm.pipe(
+    this.data$ = this.store.select(countriesSelector)
+    this.searchTerminp.pipe(
       debounceTime(1000),
       distinctUntilChanged(),
     ).subscribe({
-      next:(data => {
-        this.store.dispatch(loadCountriesFilter({searchTerm:this.searchTerm}))
-      })
+      next:((input) => {
+        this.searchsig.set(input)
+        this.store.dispatch(loadCountriesFilter({searchTerm: this.searchsig(), region:this.regionsig()})) 
     })
 
-  }
+})
+    this.data$.subscribe(data => console.log('data$ ',data))
+}
   ngOnInit(){
      this.store.dispatch(loadCountries())
   }
   handleSearch(event: Event){
     const input = event.target as HTMLInputElement
-    this.searchTerm.next(input.value)
+    this.searchTerminp.next(input.value)
 }
 
+handleRegionFilter(){
+  this.regionsig.set(this.region)
+  this.store.dispatch(loadCountriesFilter({searchTerm:this.searchsig(),region:this.region}))
+}
 
 }
 

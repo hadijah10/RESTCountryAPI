@@ -4,8 +4,8 @@
     }
     @else {
         @if(countrydata.isLoading == false){
-            <section>
-                <form role="search" aria-label="Site search">
+    <section class="search">
+    <form role="search" aria-label="Site search">
   <label for="search-input" class="visually-hidden">Search</label>
   <div class="search-container">
     <svg
@@ -24,7 +24,12 @@
 
   </div>
 </form>
-
+          <select [(ngModel)]="region" (change)="handleRegionFilter()" class="custom-select">
+            
+                @for(reg of regions;track $index){
+                    <option [value]="reg">{{ reg || 'Filter'}} </option>
+                }
+            </select>
             </section>
             <section class="cardflag">
             @for(data of countrydata.data;track $index){
