@@ -6,7 +6,7 @@
         @if(countrydata.isLoading == false){
             <section class="cardflag">
             @for(data of countrydata.data;track $index){
-           <a [routerLink]="['/',data.name.official.toLowerCase()]" class="countrycard">
+           <a [routerLink]="['/',data.cca3]" class="countrycard" (click)="handleCardClick(data.cca3)">
              <div class="imgcontainer">
                 <img [src]="data.flags.svg" [alt]="data.flags.alt">
              </div>
@@ -18,7 +18,7 @@
                 <p><span class="title">Capital: </span>{{data.capital}}</p>
             </div>
             </section>
-           </a>
+        </a>
         }
             </section>
         }

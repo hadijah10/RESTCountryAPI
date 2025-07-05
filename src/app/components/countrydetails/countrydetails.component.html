@@ -1,1 +1,54 @@
-<p>countrydetails works!</p>
+<section class="container">
+  <nav>
+    <a routerLink="/" aria-label="Go back to country list">
+      <svg width="19" height="12" viewBox="0 0 19 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M6.46447 0.107445L7.64298 1.28596L3.75389 5.17504L18.6031 5.17504L18.6031 6.82496L3.75389 6.82496L7.64298 10.714L6.46447 11.8926L0.57191 6L6.46447 0.107445Z"
+          class="path" />
+      </svg>
+      <span>Go Back</span>
+    </a>
+  </nav>
+
+  <section *ngIf="countrydata$ | async as selecteddata" >
+    <article  class="info">
+      <div class="img">
+        <img [src]="selecteddata.data[0].flags.svg" [alt]="selecteddata.data[0].name.common + ' flag'" />
+      </div>
+      <section class="sideinfo">
+          <section aria-labelledby="country-details-heading" class="infotop">
+        <header>
+          <h2 id="country-details-heading">{{ selecteddata.data[0].name.common }}</h2>
+        </header>
+        <div class="country-details">
+          <div class="ldetails">
+            <span>Native Name: </span> {{ selecteddata.data[0].name.common }}<br>
+            <span>Population: </span> {{ selecteddata.data[0].population }}<br>
+            <span>Region: </span> {{ selecteddata.data[0].region }}<br>
+            <span>Sub Region: </span> {{ selecteddata.data[0].subregion }}<br>
+            <span>Capital: </span> {{ selecteddata.data[0].capital }}<br>
+          </div>
+
+          <div class="rdetails">
+            <span>Top-Level Domain:</span> {{ selecteddata.data[0].tld[0] }}<br>
+            <span>Currencies:</span> {{ selecteddata.data[0].currencies | objectlist : 'currency' }}<br>
+            <span>Languages:</span> {{ selecteddata.data[0].languages | objectlist : 'lang' }}<br>
+          </div>
+        </div>
+      </section>
+          <section aria-labelledby="border-countries-heading" class="border-countries-heading-box">
+        <h3 id="border-countries-heading">Border Countries:</h3>
+        <div class="border-buttons">
+          @if (selecteddata.data[0].borders.length) {
+            @for (border of selecteddata.data[0].borders; track $index) {
+              <button type="button" (click)="handleClick(border)" >{{ border }}</button>
+            }
+          } @else {
+            <p>No border countries</p>
+          }
+      </div>
+      </section>
+      </section>
+    </article>
+  </section>
+</section>
