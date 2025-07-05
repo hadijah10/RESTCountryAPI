@@ -28,9 +28,7 @@ id:string=''
 
     this.id= this.activatedRoute.snapshot.params['id'];
     this.countrydata$ = this.storeservice.select(countrydata)
-    this.countrydata$.subscribe(data => 
-      console.log('heydlk,',data)
-    )
+  
  
   }
 

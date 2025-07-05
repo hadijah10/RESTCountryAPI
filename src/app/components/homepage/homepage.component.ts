@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import { loadCountriesFilter } from '../../store/actions/loadCountries.action';
-import { countryFeature } from '../../store/selectors/loadCountries.selector';
 
 @Component({
   selector: 'app-homepage',
@@ -39,7 +38,7 @@ export class HomepageComponent {
     })
 
 })
-    this.data$.subscribe(data => console.log('data$ ',data))
+ 
 }
   ngOnInit(){
      this.store.dispatch(loadCountries())

@@ -18,9 +18,7 @@ export class SelectCountryEffect{
     this.action$.pipe(
         ofType(selectedCountry),
         switchMap((action) => {
-            // alert(`${action.id}, ${typeof(action.id)}`)
                   return this.apiservice.getCountryDetailsWithCode(action.id).pipe(
-                    tap((data) => console.log(data)),
                 map( country => getSelectedCountrySuccess({country})),
                 catchError(error => of(loadCountriesFailure({error: error.message})))
                  )
