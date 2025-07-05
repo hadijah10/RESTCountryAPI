@@ -1,59 +1,86 @@
-# Restcountriesapi
+# 🌍 RESTCountryAPI
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+A simple client that fetches and displays country data using the REST Countries API. Includes search and region filter functionality, and detailed views per country.
 
-## Development server
+Table of Contents
+Demo
 
-To start a local development server, run:
+Features
 
-```bash
-ng serve
-```
+Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Setup & Usage
 
-## Code scaffolding
+Project Structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Scripts
 
-```bash
-ng generate component component-name
-```
+Contributing
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+License
 
-```bash
-ng generate --help
-```
+## Demo 
+ [Visit the site] (https://rest-country-api-nine-nu.vercel.app/)
+Homepage with search & filter
+Country detail page with bordering countries
 
-## Building
+#  Features
+Fetches global country data via the [REST Countries API] and manage them using ngrx.
 
-To build the project run:
+Search countries by name
 
-```bash
-ng build
-```
+Filter countries by region (Africa, Asia, Europe, etc.)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Detail view per country: flag, capital, population, borders
 
-## Running unit tests
+Navigate to bordering countries from the detail view
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Support for light/dark themes
 
-```bash
-ng test
-```
+## Implementation details
+Ngrx store and effects were first installed. With commands **ng add @ngrx/store@latest and **ng add @ngrx/effects@latest
+Stores, Reducers and Effects were created to manage fetching of data for all countries as well as that oa single country. 
 
-## Running end-to-end tests
+Actions for filtering was made to trigger filtering of the loaded countries by nae and countries
 
-For end-to-end (e2e) testing, run:
+Custom pipes were creates to transfor nexted values of the object.
 
-```bash
-ng e2e
-```
+The themeswitcher also made us of the switching color. Its made use of Renderer2 to manipulate the DOM.The themeswitcher made use of ngrx store for   the manipulation of data to achieve the result.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+#  Tech  Stack
+Frontend: Angular 
 
-## Additional Resources
+HTTP Client: Augular's httpclient service
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Styling: SCSS
+
+Optional: Theme toggler, state management
+
+## 🔧 Setup & Usage
+1. Clone the repo.With git clone https://github.com/hadijah10/RESTCountryAPI.git
+2. Install dependencies. npm install
+3. Run locally with npm start of ng serve. Visit configured port. 
+4. Build for production.npm run build. 
+
+## Project Structure
+src/
+├── app/
+│   ├── components/
+│   │   ├── CountryList/
+│   │   └── CountryDetail/
+│   ├── services/
+│   │   └── country.service.ts
+│   ├── pipes/
+│   │   └── filter.pipe.ts
+│   ├── store/
+│   |   └──action
+│   |   └──effects
+│   |   └──reducers
+│   |   └──selectors
+│   ├── app.component.*
+│   └── app.module.ts
+└── assets/
+    └── styles/
+        └── _variables.scss
+
+
