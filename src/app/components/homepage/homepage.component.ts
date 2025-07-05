@@ -19,12 +19,12 @@ export class HomepageComponent {
   route = inject(Router)
   data$:Observable<ICountriesData>;
   constructor(private store:Store<IAppStateInterface>){
-    this.store.dispatch(loadCountries())
+   
     this.data$ = this.store.select(loadCountriesSelector)
-    console.log('store ',this.store)
+
   }
   ngOnInit(){
-
+     this.store.dispatch(loadCountries())
   }
 
   handleCardClick(name: string){
