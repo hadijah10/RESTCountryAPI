@@ -4,9 +4,31 @@
     }
     @else {
         @if(countrydata.isLoading == false){
+            <section>
+                <form role="search" aria-label="Site search">
+  <label for="search-input" class="visually-hidden">Search</label>
+  <div class="search-container">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 18a7.5 7.5 0 006.15-3.35z" />
+    </svg>
+    <input type="text"  (keyup)="handleSearch($event)" placeholder="search title">
+
+  </div>
+</form>
+
+            </section>
             <section class="cardflag">
             @for(data of countrydata.data;track $index){
-           <a [routerLink]="['/',data.cca3]" class="countrycard" (click)="handleCardClick(data.cca3)">
+           <a [routerLink]="['/',data.cca3]" class="countrycard" >
              <div class="imgcontainer">
                 <img [src]="data.flags.svg" [alt]="data.flags.alt">
              </div>
