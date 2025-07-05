@@ -2,6 +2,52 @@
 @use 'variables' as *;
 
 .search{
+  margin-inline: 80px;
+  margin-block: 1.2rem;
+  @include flex($direction:row,$justify:space-between,$align:center);
+  box-shadow: 0 2px 9px 0 $shardow-color;
+    @media(max-width:768px){
+      @include flex($direction:column,$gap:3.5rem);
+       margin-inline: 2rem;
+    }
+  @media(max-width:500px){
+     margin-inline: 3rem;
+  }
+  @media (max-width: 300px) {
+    margin-inline: min(0,1rem);
+
+  }
+
+  
+    .custom-select {
+  appearance: none; /* Remove native styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: var(--header-color);
+  box-shadow: 0 2px 9px 0 $shardow-color;
+  border-radius: 8px;
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--text-color);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23444' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5H7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-select:hover {
+  border-color: gray
+}
+
+.custom-select:focus {
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+  outline: none;
+}
+
+  }
   .visually-hidden {
   position: absolute;
   width: 1px;
@@ -18,25 +64,33 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  border: 1px solid #ccc;
+ border: none;
+    background-color:var(--header-color);
+    outline: none;
   border-radius: 4px;
   padding: 0.5rem;
   max-width: 300px;
+  color: var(--text-color);
 }
 
 .search-container svg {
   flex-shrink: 0;
-  color: #666;
+  color: var(--text-color);
 }
 
 .search-container input {
+  background-color: var(--header-color);
   border: none;
   outline: none;
   width: 100%;
   font-size: 1rem;
+  color: var(--text-color);
+  ::placeholder{
+    color: var(--text-color);
+  }
 }
 
-}
+
 .cardflag {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
