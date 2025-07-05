@@ -98,6 +98,7 @@
 }
 .border-countries-heading-box{
     @include flex($align:center,$gap:15px);
+    flex-wrap: wrap;
     h3{
         width:max-content;
     }
@@ -106,6 +107,7 @@
     }
     .border-buttons{
         @include flex($align:center,$gap:10px);
+        flex-wrap: wrap;
         button{
             padding: 2px 28px;
             cursor: pointer;

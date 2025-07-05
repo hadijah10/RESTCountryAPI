@@ -1,9 +1,12 @@
 import { ICountriesData, ICountryData } from "../../models/interfaces/restdata.interface"
 import { on, createReducer } from "@ngrx/store"
-import { loadCountries, loadCountriesSuccess, loadCountriesFailure } from "../actions/loadCountries.action"
+import { loadCountries, loadCountriesSuccess, loadCountriesFailure, loadCountriesFilter } from "../actions/loadCountries.action"
+import { searchTerm } from "../selectors/loadCountries.selector"
 
 export const initialState: ICountriesData = {
     isLoading: false,
+    searchTerm: '',
+    region:'',
     data: [],
     error: null
 }
@@ -11,6 +14,7 @@ export const initialState: ICountriesData = {
 export const LoadCountriesReducer = createReducer(
     initialState,
     on(loadCountries, (state) => ({ ...state, isLoading: true })),
-    on(loadCountriesSuccess, (state, actions) => ({ ...state, isLoading: false, data: actions.countries })),
+    on(loadCountriesFilter,(state,actions) => ({...state,searchTerm:actions.searchTerm,region:actions.region})),
+    on(loadCountriesSuccess, (state, actions)  => ({ ...state, isLoading: false, data: actions.countries })),
     on(loadCountriesFailure, (state, actions) => ({ ...state, isLoading: false, error: actions.error }))
 )

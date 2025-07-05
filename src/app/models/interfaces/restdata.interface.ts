@@ -21,6 +21,8 @@ export interface ICountryData {
 }
 
 export interface ICountriesData{
+ searchTerm: string,
+  region: string,
 isLoading: boolean,
 data: ICountryData[],
 error: string | null
