@@ -11,5 +11,5 @@ export const idSelector = createSelector(
 
 export const isLoading = createSelector(
     countrydata,
-    (state) => state.data
+    (state) => state.isLoading
 )

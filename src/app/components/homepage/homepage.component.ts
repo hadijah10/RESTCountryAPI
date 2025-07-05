@@ -29,7 +29,7 @@ export class HomepageComponent {
       distinctUntilChanged(),
     ).subscribe({
       next:(data => {
-      
+        this.store.dispatch(loadCountriesFilter({searchTerm:this.searchTerm}))
       })
     })
 
